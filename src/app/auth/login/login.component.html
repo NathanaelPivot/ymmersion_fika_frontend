@@ -1,1 +1,36 @@
-<p>login works!</p>
+<section class="login_ctn">
+  <div class="img_login">
+    <img src="img/login_register.jpg" alt="logo">
+  </div>
+  <div class="login_form">
+    <form [formGroup]="loginFromGroup" (ngSubmit)="login()">
+      <div class="header_login">
+        <h1>Connexion</h1>
+      </div>
+      @if (invalidCredentials && error) {
+        <div class="form-error-message">
+          <p>
+            {{ messageError }}
+          </p>
+        </div>
+      }
+      <div class="form-group-container">
+        <div class="form-group">
+          <input type="email" formControlName="email" placeholder="Email">
+          <label>Email</label>
+        </div>
+        <div class="form-group">
+          <input type="password" formControlName="password" placeholder="Mot de passe">
+          <label>Mot de passe</label>
+        </div>
+      </div>
+      <div class="forgot-password">
+        <a href="/auth/forgot-password">Mot de passe oublié ?</a>
+      </div>
+      <button type="submit" [disabled]="loginFromGroup.invalid">Se connecter</button>
+    </form>
+    <div class="register">
+      <p>Pas encore inscrit ? <a href="/auth/register">Inscrivez-vous</a></p>
+    </div>
+  </div>
+</section>

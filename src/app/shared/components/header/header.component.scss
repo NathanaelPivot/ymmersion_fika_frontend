@@ -51,7 +51,6 @@ header {
 
       &.active {
         color: var(--primary);
-        font-weight: bold;
         &::after {
           width: 100%;
         }

@@ -5,6 +5,8 @@ import {AppRoutingModule} from './app-routing.module';  // ✅ Import de AppRout
 import {SharedModule} from './shared/shared.module';
 import {IngredientManagementComponent} from './admin/ingredient-management/ingredient-management.component';
 import {LucideAngularModule, ShoppingCart, User, X} from 'lucide-angular';
+import {HttpClientModule} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,7 @@ import {LucideAngularModule, ShoppingCart, User, X} from 'lucide-angular';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     LucideAngularModule.pick({
@@ -20,7 +23,9 @@ import {LucideAngularModule, ShoppingCart, User, X} from 'lucide-angular';
       X
     }),
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
