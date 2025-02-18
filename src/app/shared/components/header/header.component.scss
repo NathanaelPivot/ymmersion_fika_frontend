@@ -23,7 +23,7 @@ header {
   .header_menu {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
+    gap: 3rem;
 
     a {
       transition: color 0.2s ease-in-out;
@@ -51,6 +51,7 @@ header {
 
       &.active {
         color: var(--primary);
+        font-weight: bold;
         &::after {
           width: 100%;
         }
