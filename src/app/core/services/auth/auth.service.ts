@@ -51,13 +51,10 @@ export class AuthService {
   }
 
   login(credentials: credentials): Observable<User | null | undefined> {
+    console.log(credentials);
     return this.http.post<User>(environment.apiUrl + '/auth/login', credentials).pipe(
       tap((result: any) => {
-        if (credentials.rememberMe === true) {
-          this.cookieService.set('token', result.accessToken);
-        } else {
-          sessionStorage.setItem('token', result.accessToken);
-        }
+        this.cookieService.set('token', result.accessToken);
         const user = Object.assign(new User(), result['user']);
         this.user.set(user);
       }),
