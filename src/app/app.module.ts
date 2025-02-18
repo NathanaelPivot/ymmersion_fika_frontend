@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';  // ✅ Import de AppRoutingModule
 import {SharedModule} from './shared/shared.module';
 import {IngredientManagementComponent} from './admin/ingredient-management/ingredient-management.component';
-import {LucideAngularModule, ShoppingCart, User} from 'lucide-angular';
+import {LucideAngularModule, ShoppingCart, User, X} from 'lucide-angular';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import {LucideAngularModule, ShoppingCart, User} from 'lucide-angular';
     SharedModule,
     LucideAngularModule.pick({
       ShoppingCart,
-      User
+      User,
+      X
     }),
   ],
   providers: [],
