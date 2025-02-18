@@ -16,7 +16,8 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     IngredientManagementComponent,
     HistoryComponent,
     CreateProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+
   ],
   imports: [
     CommonModule

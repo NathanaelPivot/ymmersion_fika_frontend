@@ -8,7 +8,6 @@ import { IngredientManagementComponent } from './admin/ingredient-management/ing
 @NgModule({
   declarations: [
     AppComponent,
-    IngredientManagementComponent
   ],
   imports: [
     BrowserModule,
