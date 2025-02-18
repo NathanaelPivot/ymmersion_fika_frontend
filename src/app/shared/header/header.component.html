@@ -1,8 +1,26 @@
 <header>
-    <div class="accueil-produits">
-        <a [routerLink]="'/orders/home'">ACCUEIL</a>
-        <a [routerLink]="'/orders/products'">PRODUITS</a>
-    </div>
-    <div class="empty"></div>
-    <div class="panier-login"></div>
+  <div class="header_logo">
+    <a routerLink="/">
+      <img src="img/logo/logo_fika.jpg" alt="logo">
+    </a>
+  </div>
+  <div class="header_menu">
+    <a routerLinkActive="active" routerLink="/">
+      <span>Home</span>
+    </a>
+    <a routerLinkActive="active" routerLink="/about">
+      <span>About</span>
+    </a>
+  </div>
+  <div class="header_action">
+    <a routerLink="/login">
+      <lucide-icon name="user" class="my-icon"></lucide-icon>
+    </a>
+    <button class="header_cart">
+      <span>
+        <lucide-icon name="shopping-cart" class="my-icon"></lucide-icon>
+      </span>
+    </button>
+  </div>
+
 </header>
