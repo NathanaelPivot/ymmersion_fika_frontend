@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';  // ✅ Import de AppRoutingModule
 import { SharedModule } from './shared/shared.module';
-import { IngredientManagementComponent } from './admin/ingredient-management/ingredient-management.component';
+import { Product } from './core/models/product.model';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { IngredientManagementComponent } from './admin/ingredient-management/ing
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

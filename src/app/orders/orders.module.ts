@@ -8,7 +8,7 @@ import { ProductsComponent } from './products/products.component';
   declarations: [HomeComponent, ProductsComponent],
   imports: [
     CommonModule,
-    OrdersRoutingModule  
+    OrdersRoutingModule, 
   ]
 })
 export class OrdersModule { }
