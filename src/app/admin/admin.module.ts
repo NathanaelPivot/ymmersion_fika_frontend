@@ -6,6 +6,7 @@ import { IngredientManagementComponent } from './ingredient-management/ingredien
 import { HistoryComponent } from './history/history.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
+import { AdminRoutingModule } from './admin.routing.module';
 
 
 
@@ -18,9 +19,11 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     CreateProductComponent,
     UpdateProductComponent,
 
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }
