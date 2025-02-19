@@ -9,16 +9,14 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken(); // Récupère le token depuis AuthService
+    const token = this.authService.getToken();
     if (token) {
-      // Clone la requête pour ajouter l'en-tête Authorization avec le token
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
     }
-    // Continue le traitement de la requête
     return next.handle(request);
   }
 }
