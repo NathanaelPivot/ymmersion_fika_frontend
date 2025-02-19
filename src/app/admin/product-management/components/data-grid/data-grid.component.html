@@ -16,20 +16,23 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>1</td>
-      <td>img</td>
-      <td>name</td>
-      <td>description</td>
-      <td>price</td>
-      <td>plat du jour</td>
-      <td>promotion</td>
-      <td>type</td>
-      <td>category</td>
-      <td>status</td>
+    <!-- Les lignes de tableau sont générées dynamiquement -->
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
       <td>
-        <button>Modifier</button>
-        <button>Supprimer</button>
+        <img [src]="product.imagePath" alt="Product Image" />
+      </td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price | currency: 'EUR'}}</td>
+      <td>{{ product.isPlatDuJour ? 'Oui' : 'Non' }}</td>
+      <td>{{ product.promotion || '0%' }}</td>
+      <td>{{ product.idType }}</td>
+      <td>{{ product.idCategory }}</td>
+      <td>{{ product.available }}</td>
+      <td>
+        <button (click)="editProduct(product)">Modifier</button>
+        <button (click)="deleteProduct(product.id)">Supprimer</button>
       </td>
     </tr>
     </tbody>
