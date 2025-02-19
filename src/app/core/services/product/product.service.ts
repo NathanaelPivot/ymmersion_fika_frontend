@@ -14,8 +14,8 @@ export class ProductService {
   constructor(private readonly http: HttpClient) { }
 
   // Récup tout les produits
-  getProduits(): Observable<any> {
-    return this.http.get<any>(`${this.url}/produits`);
+  getProduits(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.url}/produits`);
   }
 
   // Récup 1 produit avec ID
@@ -33,4 +33,8 @@ export class ProductService {
     return this.http.get<any>(`${this.url}/produits/promo`);
   }
 
+  // Supprimer un produit
+  deleteProduit(productId: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${productId}`);
+  }
 }
