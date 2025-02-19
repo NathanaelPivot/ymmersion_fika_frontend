@@ -16,13 +16,15 @@
     thead {
       background-color: var(--primary);
 
-      th {
-        color: #fff;
-        padding: 10px;
-        text-transform: uppercase;
-        font-size: 14px;
-        text-align: center; /* Centrer les titres */
-        border: 1px solid #ccc; /* Délimiter chaque colonne de l'en-tête */
+      tr {
+        th {
+          color: #fff;
+          padding: 10px;
+          text-transform: uppercase;
+          font-size: 14px;
+          text-align: center; /* Centrer les titres */
+          border: 1px solid #ccc; /* Délimiter chaque colonne de l'en-tête */
+        }
       }
     }
 
@@ -52,7 +54,7 @@
 
         &:last-child {
           button {
-            margin: 0 5px;
+            margin: 5px 5px;
             padding: 5px 10px;
             border: none;
             background-color: var(--secondary);
@@ -68,4 +70,17 @@
       }
     }
   }
+}
+
+.sortable-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sortable-header lucide-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
 }
