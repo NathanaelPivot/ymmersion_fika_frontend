@@ -7,8 +7,7 @@ import { HistoryComponent } from './history/history.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { AdminRoutingModule } from './admin.routing.module';
-
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,12 @@ import { AdminRoutingModule } from './admin.routing.module';
     HistoryComponent,
     CreateProductComponent,
     UpdateProductComponent,
+    NavbarComponent,
 
 
+  ],
+  exports: [
+    NavbarComponent
   ],
   imports: [
     CommonModule,

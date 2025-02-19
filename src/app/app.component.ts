@@ -8,15 +8,19 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   showHeader: boolean = true;
+  showNavBar: boolean = true;
 
   constructor(private router: Router) {
-    // Surveillez les changements de route
+
     this.router.events.subscribe(() => {
-      // Liste des routes sur lesquels le header ne doit pas apparaître
       const noHeaderRoutes = ['/admin', '/auth'];
-      // Vérifiez la route actuelle
       this.showHeader = !noHeaderRoutes.some(route => this.router.url.startsWith(route));
     });
+
+    this.router.events.subscribe(() => {
+      const noNavBarAdminRoutes = ['/admin'];
+      this.showNavBar = noNavBarAdminRoutes.some(route => this.router.url.startsWith(route));
+    })
   }
 
 }

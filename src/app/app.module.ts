@@ -7,6 +7,7 @@ import {IngredientManagementComponent} from './admin/ingredient-management/ingre
 import {LucideAngularModule, ShoppingCart, User, X} from 'lucide-angular';
 import {HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {CookieService} from 'ngx-cookie-service';
       User,
       X
     }),
+    AdminModule,
   ],
   providers: [
     CookieService
