@@ -1,27 +1,31 @@
-<nav>
+<nav class="navbar">
   <div class="header_logo">
-    <a routerLink="/">
-      <img src="img/logo/logo_fika.png" alt="logo">
-    </a>
-    <div>
+    <div class="logo">
+      <img src="img/logo/logo_2.png" alt="logo">
+    </div>
+    <div class="username">
       <span>Username</span>
     </div>
   </div>
-  <div>
-    <a href="/admin/dashboard">
+  <hr>
+  <div class="navbar_menu">
+    <a routerLinkActive="active" routerLink="/admin/dashboard">
       <span>Dashboard</span>
     </a>
-    <a href="/">
+    <a routerLinkActive="active" routerLink="/admin/orders">
       <span>Commande en cours</span>
     </a>
-    <a href="">
+    <a routerLinkActive="active" routerLink="/admin/history">
       <span>Historique des commandes</span>
     </a>
-    <a href="">
+    <a routerLinkActive="active" routerLink="/admin/product-management">
       <span>Gestion des produits</span>
     </a>
-    <a href="">
+    <a routerLinkActive="active" routerLink="/admin/ingredients">
       <span>Gestion des ingrédients</span>
     </a>
+  </div>
+  <div class="navbar_deconnexion">
+    <button (click)="logout()">Deconnexion</button>
   </div>
 </nav>

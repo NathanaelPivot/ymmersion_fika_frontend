@@ -54,7 +54,7 @@ export class AuthService {
     console.log(credentials);
     return this.http.post<User>(environment.apiUrl + '/auth/login', credentials).pipe(
       tap((result: any) => {
-        this.cookieService.set('token', result.accessToken);
+        this.cookieService.set('token', result.accessToken, { path: '/' });
         const user = Object.assign(new User(), result['user']);
         this.user.set(user);
       }),
@@ -99,17 +99,17 @@ export class AuthService {
     )
   }
 
-  getToken(): string | null {
+  async getToken(): Promise<string | null> {
     const cookieValue = this.cookieService.get('token')
-    if (cookieValue) {
-      return cookieValue;
+    console.log(cookieValue);
+    if (!cookieValue) {
+      return null;
     }
-    return null;
+    return cookieValue;
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
+    this.cookieService.delete('token', '/')
     this.user.set(null);
   }
 
