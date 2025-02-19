@@ -2,35 +2,74 @@
   <table>
     <thead>
     <tr>
-      <th>id</th>
+      <th (click)="sortTable('id')">
+        <div class="sortable-header">
+          id
+          <ng-container *ngIf="currentSortProperty === 'id'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
       <th>image</th>
-      <th>name</th>
+      <th (click)="sortTable('name')">
+        <div class="sortable-header">
+          name
+          <ng-container *ngIf="currentSortProperty === 'name'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
       <th>description</th>
-      <th>price</th>
+      <th (click)="sortTable('price')">
+        <div class="sortable-header">
+          price
+          <ng-container *ngIf="currentSortProperty === 'price'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
       <th>plat du jour</th>
-      <th>promotion</th>
+      <th (click)="sortTable('promotion')">
+        <div class="sortable-header">
+          promotion
+          <ng-container *ngIf="currentSortProperty === 'promotion'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
       <th>type</th>
       <th>category</th>
-      <th>status</th>
+      <th (click)="sortTable('available')">
+        <div class="sortable-header">
+          status
+          <ng-container *ngIf="currentSortProperty === 'available'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
       <th>actions</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Les lignes de tableau sont générées dynamiquement -->
     <tr *ngFor="let product of products">
       <td>{{ product.id }}</td>
       <td>
-        <img [src]="product.imagePath" alt="Product Image" />
+        <img [src]="product.imagePath" alt="Product Image"/>
       </td>
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
-      <td>{{ product.price | currency: 'EUR'}}</td>
+      <td>{{ product.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
       <td>{{ product.isPlatDuJour ? 'Oui' : 'Non' }}</td>
-      <td>{{ product.promotion || '0%' }}</td>
+      <td>{{ product.promotion | promotion }} %</td>
       <td>{{ product.idType }}</td>
       <td>{{ product.idCategory }}</td>
-      <td>{{ product.available }}</td>
-      <td>
+      <td>{{ product.available ? 'en ligne' : 'brouillon' }}</td>
+      <td class="actions">
         <button (click)="editProduct(product)">Modifier</button>
         <button (click)="deleteProduct(product.id)">Supprimer</button>
       </td>

@@ -9,6 +9,8 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import { AdminRoutingModule } from './admin.routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DataGridComponent } from './product-management/components/data-grid/data-grid.component';
+import {LucideAngularModule} from 'lucide-angular';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,15 +22,15 @@ import { DataGridComponent } from './product-management/components/data-grid/dat
     UpdateProductComponent,
     NavbarComponent,
     DataGridComponent,
-
-
   ],
   exports: [
     NavbarComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    LucideAngularModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

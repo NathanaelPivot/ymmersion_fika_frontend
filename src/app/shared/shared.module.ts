@@ -5,11 +5,13 @@ import { SideCartComponent } from './components/side-cart/side-cart.component'; 
 
 import { RouterModule } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import {PromotionPipe} from '../core/pipes/promotion/promotion.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent, // Déclaré ici
-    SideCartComponent // Déclaré ici
+    SideCartComponent, // Déclaré ici
+    PromotionPipe
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { LucideAngularModule } from 'lucide-angular';
   ],
   exports: [
     HeaderComponent, // Exporté ici
-    SideCartComponent // Exporté ici
+    SideCartComponent, // Exporté ici
+    PromotionPipe
   ]
 })
 export class SharedModule { }
