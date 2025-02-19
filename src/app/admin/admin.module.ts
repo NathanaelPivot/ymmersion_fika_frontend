@@ -8,6 +8,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { AdminRoutingModule } from './admin.routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DataGridComponent } from './product-management/components/data-grid/data-grid.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CreateProductComponent,
     UpdateProductComponent,
     NavbarComponent,
+    DataGridComponent,
 
 
   ],

@@ -1,4 +1,7 @@
 <app-header *ngIf="showHeader"></app-header>
 <app-side-cart *ngIf="showHeader"></app-side-cart>
-<app-navbar *ngIf="showNavBar" ></app-navbar>
-<router-outlet></router-outlet>
+<main class="main">
+  <app-navbar *ngIf="showNavBar" ></app-navbar>
+  <router-outlet></router-outlet>
+</main>
+
