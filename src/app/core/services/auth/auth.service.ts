@@ -65,6 +65,7 @@ export class AuthService {
   }
 
   register(credentials: credentials): Observable<CreateUser | null | undefined> {
+    console.log(credentials);
     return this.http.post<User>(environment.apiUrl + '/auth/register', credentials).pipe(
       tap((result: any) => {
         const user = Object.assign(new CreateUser(), result);
