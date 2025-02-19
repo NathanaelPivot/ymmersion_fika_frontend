@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-  products!: {
+  products: {
     platsDuJour$: Product[],
     promos$: Product[]
-  }
+  } = { platsDuJour$: [], promos$: [] }
 
   ngOnInit(): void {
     this.fetchPlatDuJour();
@@ -26,7 +26,12 @@ export class HomeComponent implements OnInit {
   fetchPlatDuJour() {
     this.productService.getPlatDuJour().subscribe(response => {
       this.products.platsDuJour$ = response;
-      console.log(this.products.platsDuJour$);
+    })
+  }
+
+  fetchPromo() {
+    this.productService.getPromo().subscribe(response => {
+      this.products.platsDuJour$ = response;
     })
   }
 }
