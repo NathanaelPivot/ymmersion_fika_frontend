@@ -1,0 +1,130 @@
+.detail_produit_ctn {
+    height: 90vh;
+    width: 100vw;
+    background-image: url(../../../../public/img/bg/bg2.png);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .red {
+        color: red;
+    }
+
+    .detail_produit {
+        width: 90%;
+        height: 80%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+
+        img {
+            width: 45%;
+            height: 80%;
+        }
+
+        .infos_ctn {
+            height: 80%;
+            width: 45%;
+            background-color: #89db99;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            h1 {
+                padding: 10px;
+            }
+
+            p,
+            h3,
+            h4 {
+                padding: 15px;
+            }
+
+            .plat_du_jour {
+                color: #fff;
+            }
+
+            .recette {
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: 15px;
+                gap: 20px;
+
+                .ingredient {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border: solid 1px #fff;
+                    background-color: #fff;
+                    border-radius: 10px;
+
+                    button {
+                        border: none;
+                        background: none;
+                        padding: 5px;
+                    }
+
+                    button:hover {
+                        color: red;
+                    }
+
+                    span {
+                        padding: 5px;
+                    }
+                }
+            }
+
+            .without {
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                padding-left: 15px;
+                gap: 5px;
+
+                .without_item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-left: 20px;
+                    width: 40%;
+
+                    button {
+                        border: none;
+                        background: none;
+                        padding: 5px;
+                        border-radius: 5px;
+                        background-color: #ffffff;
+                        color: #243fb5;
+                    }
+                }
+            }
+
+            .order_ctn {
+                width: 100%;
+                height: 20%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    border: none;
+                    background: none;
+                    padding: 20px;
+                    font-size: 20px;
+                    background-color: #c8e0cd;
+                    border-radius: 10px;
+                }
+
+                button:hover {
+                    background-color: #75a17f;
+                    color: #fff;
+                }
+            }
+
+        }
+    }
+}

@@ -3,9 +3,15 @@
         <h1>Plat du jour</h1>
         <div class="pdj_list">
             <div class="produit" *ngFor="let produit of products.platsDuJour$">
-                <img src="img/plats/IMG_7056.JPG" alt="{{produit.name}}">
+                <div class="image_ctn">
+                    <div class="loader" *ngIf="!imageLoaded"></div>
+                    <img [src]="'http://localhost:3000/uploads/'+produit.imagePath" (load)="imageLoaded = true"
+                        [style.display]="imageLoaded ? 'flex' : 'none'" />
+                </div>
+
+
                 <p>{{produit.name}}</p>
-                <button>
+                <button routerLink="/detail/{{produit.id}}">
                     <p>Voir le produit</p>
                     <div class="price">
                         <p>{{produit.price }}€</p>
@@ -14,11 +20,15 @@
             </div>
         </div>
         <h1>Promo</h1>
-        <div class="promo_list">
+        <div class="pdj_list">
             <div class="produit" *ngFor="let produit of products.promos$">
-                <img src="img/plats/IMG_7056.JPG" alt="{{produit.name}}">
+                <div class="image_ctn">
+                    <div class="loader" *ngIf="!imageLoaded"></div>
+                    <img [src]="'http://localhost:3000/uploads/'+produit.imagePath" (load)="imageLoaded = true"
+                        [style.display]="imageLoaded ? 'flex' : 'none'" />
+                </div>
                 <p>{{produit.name}}</p>
-                <button>
+                <button routerLink="/detail/{{produit.id}}">
                     <p>Voir le produit</p>
                     <div class="price"><span>{{produit.price}}€</span>
                         <p>{{produit.price - (produit.price * produit.promotion /100) | number: '1.2-2'}}€</p>
@@ -30,6 +40,8 @@
             </div>
         </div>
     </div>
+    <div class="see_all_ctn">
+        <a routerLink="/products" class="see_all">Voir tout les produits</a>
+    </div>
 
-    <a routerLink="/products" class="see_all">Voir tout les produits</a>
 </section>

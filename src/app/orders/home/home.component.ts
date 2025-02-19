@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Product} from '../../core/models/product.model';
-import {ProductService} from '../../core/services/product/product.service';
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../core/models/product.model';
+import { ProductService } from '../../core/services/product/product.service';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +14,17 @@ export class HomeComponent implements OnInit {
 
   }
 
+  imageLoaded: boolean = false;
+
   products: {
     platsDuJour$: Product[],
     promos$: Product[]
   } = { platsDuJour$: [], promos$: [] }
 
   ngOnInit(): void {
+
     this.fetchPlatDuJour();
+    this.fetchPromo();
   }
 
   fetchPlatDuJour() {
@@ -31,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   fetchPromo() {
     this.productService.getPromo().subscribe(response => {
-      this.products.platsDuJour$ = response;
+      this.products.promos$ = response;
     })
   }
 }

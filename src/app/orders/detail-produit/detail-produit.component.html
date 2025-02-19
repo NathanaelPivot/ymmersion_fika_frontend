@@ -1,0 +1,33 @@
+<section class="detail_produit_ctn">
+    <div class="detail_produit">
+
+
+        <img src="http://localhost:3000/uploads/{{produit.imagePath}}" alt="Image {{produit.name}}">
+
+
+        <div class="infos_ctn">
+            <h1>{{produit.name}}</h1>
+            <h3 *ngIf="produit.isPlatDuJour" class="plat_du_jour">Ce produit fait parti des plats du jours !</h3>
+            <p *ngIf="produit.available">Il nous reste encore quelque {{produit.name}}</p>
+            <p *ngIf="!produit.available">On est en rupture de {{produit.name}}</p>
+            <p *ngIf="errMessage !== null" class="red">{{errMessage}}</p>
+            <h3>Recette :</h3>
+            <div class="recette">
+                <div *ngFor="let ingredient of ingredientList" class="ingredient">
+                    <span>{{ingredient.name}}</span>
+                    <button (click)="removeIngredient(ingredient)">⛌</button>
+                </div>
+            </div>
+            <div class="without" *ngIf="withoutList.length >0">
+                <h4 *ngIf="withoutList.length >0">Sans :</h4>
+                <div *ngFor="let ingredient of withoutList" class="without_item">
+                    <span class="red">- {{ingredient.name}} </span>
+                    <button (click)="addIngredient(ingredient)">Annuler</button>
+                </div>
+            </div>
+            <div class="order_ctn">
+                <button [disabled]="errMessage !== null" routerLink="/">Ajouter à la commande</button>
+            </div>
+        </div>
+    </div>
+</section>

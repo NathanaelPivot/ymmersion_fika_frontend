@@ -1,3 +1,5 @@
+import { Ingredient } from "./ingredient.model";
+
 export interface Product {
   id: number,
   name: string,
@@ -11,5 +13,5 @@ export interface Product {
   idType: number,
   idCategory: number,
   available: boolean,
-  category: string
+  ingredients: Ingredient[]
 }

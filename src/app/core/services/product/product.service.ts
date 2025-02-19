@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   // Récup 1 produit avec ID
-  getProduit(id: number): Observable<any> {
+  getProduit(id: number): Observable<Product> {
     return this.http.get<any>(`${this.url}/produits/${id}`);
   }
 
@@ -29,7 +29,7 @@ export class ProductService {
   }
 
   // Récup les promos 👍
-  getPromo(): Observable<any> {
+  getPromo(): Observable<Product[]> {
     return this.http.get<any>(`${this.url}/produits/promo`);
   }
 
