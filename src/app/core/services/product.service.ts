@@ -29,7 +29,7 @@ export class ProductService {
   }
 
   // Récup les promos 👍
-  getPromo(): Observable<any> {
+  getPromo(): Observable<Product[]> {
     return this.http.get<any>(`${this.url}/produits/promo`);
   }
 
