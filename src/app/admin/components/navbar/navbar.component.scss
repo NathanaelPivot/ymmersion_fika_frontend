@@ -1,0 +1,71 @@
+.navbar {
+  height: 100vh;
+  width: 15vw;
+  box-shadow: var(--shadow);
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  .header_logo {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    height: 20vh;
+    .logo {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 10vh;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .username {
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+  }
+  hr {
+    width: 70%;
+  }
+  .navbar_menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 10px;
+    gap: .7rem;
+    a {
+      color: var(--text);
+      font-size: .8rem;
+      transition: color 0.2s ease-in-out;
+      cursor: pointer;
+      position: relative;
+      padding: 15px 5px;
+      font-weight: 600;
+      &:hover {
+        background: var(--secondary);
+        border-radius: 5px;
+      }
+      &.active {
+        background: var(--secondary);
+        border-radius: 5px;
+      }
+    }
+  }
+  .navbar_deconnexion {
+    padding: 2rem 10px;
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s ease-in-out;
+      &:hover {
+        color: var(--error);
+      }
+    }
+  }
+}

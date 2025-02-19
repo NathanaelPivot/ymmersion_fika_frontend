@@ -1,0 +1,87 @@
+<section class="register">
+  <div class="register-container">
+    <div class="img-register">
+      <img src="img/login_register.jpg" alt="" class="img-logo-laptop">
+    </div>
+    <div class="register-form-container">
+      <form class="register-form" [formGroup]="registerFormGroup" (ngSubmit)="register()">
+        <h1>Inscription</h1>
+        <div class="form-group-container">
+          <div class="form-group">
+            <input type="text" placeholder="John"
+                   [ngClass]="{'error-input': nameFormField?.touched && !registerFormGroup.get('name')?.valid}"
+                   formControlName="name" minlength="3" maxlength="20"
+                   required>
+            <label
+              [ngClass]="{'error-label': nameFormField?.touched && !registerFormGroup.get('name')?.valid}">Nom</label>
+            <div class="form-name-required" *ngIf="nameFormField?.dirty">
+              <span *ngIf="nameFormField?.hasError('required')" class="error-message">
+                Le nom est requis.
+              </span>
+              <span *ngIf="nameFormField?.hasError('minlength')" class="error-message">
+                Le nom doit comporter au moins 3 caractères.
+              </span>
+              <span *ngIf="nameFormField?.hasError('maxlength')" class="error-message">
+                Le nom ne doit pas dépasser 20 caractères.
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="vimtails@domain.com"
+                   [ngClass]="{'error-input': emailFormField?.touched && !registerFormGroup.get('email')?.valid || error === 'alreadyExists'}"
+                   formControlName="email" required>
+            <label
+              [ngClass]="{'error-label': emailFormField?.touched && !registerFormGroup.get('email')?.valid || error === 'alreadyExists'}">Email</label>
+            @if (invalidCredentials && error) {
+              <div class="form-group-messageError">
+                <p>{{ messageError }}</p>
+              </div>
+            }
+            <div class="form-email-required" *ngIf="emailFormField?.touched">
+              <div class="email-required-content">
+                <span class="none" [ngClass]="{'red block': !registerFormGroup.get('email')?.valid}">
+                  Format email valide
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="**********" [ngClass]="{'error-input': error === 'password-strength-error'}"
+                   formControlName="password" required>
+            <label>Mot de passe</label>
+            @if (invalidCredentials && error === 'password-strength-error') {
+              <div class="form-group-messageError">
+                <p>{{ messageError }}</p>
+              </div>
+            }
+            <div class="form-password-required" *ngIf="passwordFormField?.dirty">
+              <div class="password-required-content">
+                <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('^(?=.*[A-Z])')}">
+                  1 majuscule
+                </span>
+                <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(?=.*[a-z])')}">
+                  1 minuscule
+                </span>
+                <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(.*[0-9].*)')}">
+                  1 chiffre
+                </span>
+              </div>
+              <div class="password-required-content">
+                <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('(?=.*[!@#$%^&*])')}">
+                  1 caractère spécial
+                </span>
+                <span class="block" [ngClass]="{'text-primary': passwordFormField?.value?.match('.{8,}')}">
+                  8 caratères minimum
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="registerFormGroup.invalid">S'inscrire</button>
+      </form>
+      <div class="register-form-footer">
+        <p>Déjà un compte ? <a href="/auth/login">Connectez-vous</a></p>
+      </div>
+    </div>
+  </div>
+</section>

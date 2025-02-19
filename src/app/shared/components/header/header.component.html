@@ -1,0 +1,32 @@
+<header>
+  <div class="header_logo">
+    <a routerLink="/">
+      <img src="img/logo/logo_fika.png" alt="logo">
+    </a>
+  </div>
+  <div class="header_menu">
+    <a routerLinkActive="active" routerLink="/plats">
+      <span>PLATS</span>
+    </a>
+    <a routerLinkActive="active" routerLink="/boissons">
+      <span>BOISSONS</span>
+    </a>
+    <a routerLinkActive="active" routerLink="/dessert">
+      <span>DESSERT</span>
+    </a>
+    <a routerLinkActive="active" routerLink="/snacks">
+      <span>SNACKS</span>
+    </a>
+  </div>
+  <div class="header_action">
+    <a routerLink="/auth/login">
+      <lucide-icon name="user" class="my-icon"></lucide-icon>
+    </a>
+    <button class="header_cart" (click)="openSideCart()">
+      <span>
+        <lucide-icon name="shopping-cart" class="my-icon"></lucide-icon>
+      </span>
+    </button>
+  </div>
+
+</header>
