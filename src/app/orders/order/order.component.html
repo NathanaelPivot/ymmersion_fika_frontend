@@ -7,9 +7,37 @@
             </div>
 
             <div class="stripe">
-                <!-- C'est ici que Stripe va monter l'élément de carte -->
+                <!-- Nom du titulaire -->
+                <label for="card-name">Nom du titulaire</label>
+                <input id="card-name" type="text" [(ngModel)]="cardholderName" placeholder="Nom sur la carte" required>
+
+                <!-- Email -->
+                <label for="card-email">Email</label>
+                <input id="card-email" type="email" [(ngModel)]="email" placeholder="Votre email" required>
+
+                <!-- Pays -->
+                <label for="billing-country">Pays</label>
+                <select id="billing-country" [(ngModel)]="billingCountry">
+                    <option value="FR">France</option>
+                    <option value="BE">Belgique</option>
+                    <option value="CH">Suisse</option>
+                    <option value="CA">Canada</option>
+                    <option value="US">États-Unis</option>
+                </select>
+
+                <!-- Code postal -->
+                <label for="postal-code">Code Postal</label>
+                <input id="postal-code" type="text" [(ngModel)]="postalCode" placeholder="Code postal">
+
+                <!-- Élément Stripe pour la carte bancaire -->
+                <label for="card-element">Carte bancaire</label>
                 <div id="card-element"></div>
-                <!-- Affichage des erreurs Stripe, si elles se produisent -->
+
+                <!-- Élément Stripe pour IBAN (SEPA) -->
+                <label for="iban-element">IBAN</label>
+                <div id="iban-element"></div>
+
+                <!-- Messages d'erreur Stripe -->
                 <div id="card-errors" role="alert"></div>
             </div>
 
@@ -18,6 +46,7 @@
             </div>
         </div>
     </section>
+
     <div class="recap_ctn">
         <h2>Detail commande</h2>
         <div class="produits_ctn">
@@ -35,9 +64,7 @@
         </div>
         <div class="confirm_ctn">
             <h2>Total : {{ total | decimalFormat }} €</h2>
-
             <button (click)="toggleModal()">Procéder au paiement de la commande</button>
-
         </div>
     </div>
 </section>

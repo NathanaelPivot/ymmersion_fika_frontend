@@ -1,3 +1,35 @@
+// 🎨 Variables globales
+$primary-color: #007bff;
+$primary-dark: #0056b3;
+$success-color: #28a745;
+$success-dark: #218838;
+$error-color: #ff4b5c;
+$light-gray: #f8f9fa;
+$border-radius: 8px;
+
+// 🟢 Mixin pour boutons stylisés
+@mixin button($bg, $hover-bg) {
+    background: linear-gradient(135deg, $bg, darken($bg, 10%));
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+
+    &:hover {
+        background: linear-gradient(135deg, darken($bg, 10%), $hover-bg);
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// 📦 Conteneur principal
 .order_ctn {
     position: relative;
     width: 100vw;
@@ -14,12 +46,16 @@
         background-color: #fff;
         display: flex;
         flex-direction: column;
+        border-radius: $border-radius;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
         h2 {
             height: 10%;
             display: flex;
             align-items: center;
-            padding: 25px
+            padding: 25px;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .produits_ctn {
@@ -37,10 +73,18 @@
                 align-items: center;
                 justify-content: space-around;
                 background-color: #f0f0f0;
+                border-radius: $border-radius;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                transition: box-shadow 0.2s;
+
+                &:hover {
+                    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+                }
 
                 img {
                     height: 60%;
                     width: auto;
+                    border-radius: 6px;
                 }
             }
         }
@@ -51,99 +95,187 @@
             align-items: center;
             justify-content: space-between;
             background-color: #ebebeb;
-
-            button {
-                background: none;
-                border: none;
-
-                padding: 15px;
-                border-radius: 10px;
-                background-color: #1212bd;
-                color: #fff;
-                margin-right: 50px;
-            }
+            padding: 15px;
+            border-radius: $border-radius;
 
             h2 {
                 margin-left: 50px;
             }
 
-
-
+            button {
+                @include button(#1212bd, #0d0da0);
+                margin-right: 50px;
+                width: 100%;
+            }
         }
     }
 
+    // 💳 Section Paiement
     .payer_commande {
         position: absolute;
         height: 100%;
         width: 100%;
-        background-color: rgb(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
 
         .payer_ctn {
-            width: 80vw;
-            height: 90%;
-            background-color: #fff;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
             display: flex;
             flex-direction: column;
+            align-items: center;
+        }
 
-            .payer_retour_ctn {
-                height: 10%;
-                display: flex;
-                align-items: center;
-                padding: 25px;
-                justify-content: space-between;
+        .payer_retour_ctn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
 
-                button {
-                    font-size: 25px;
-                    background: none;
-                    border: none;
-                }
-
-                button:hover {
-                    color: red;
-                }
+            h2 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #333;
             }
 
-            .stripe {
-                height: 80%;
-                width: 100%;
-                margin-bottom: 20px;
+            button {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #888;
+                transition: color 0.3s ease-in-out;
 
-                #card-element {
-                    width: 100%;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    height: 40px;
-                    /* Assurez-vous que l'élément a une hauteur définie */
-                }
-
-                #card-errors {
-                    color: red;
-                    margin-top: 10px;
-                }
-            }
-
-            .payer_btn_ctn {
-                height: 10%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                button {
-                    border: none;
-                    background: none;
-
-                    padding: 15px 70px;
-                    border-radius: 10px;
-                    background-color: #3312b8;
-                    color: #fff;
+                &:hover {
+                    color: $error-color;
                 }
             }
         }
 
+        .stripe {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
+        #card-element {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: $border-radius;
+            height: 50px;
+            transition: border-color 0.3s ease-in-out;
+            font-size: 1rem;
+
+            &:focus {
+                border-color: $primary-color;
+                outline: none;
+            }
+        }
+
+        #card-errors {
+            color: $error-color;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .payer_btn_ctn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            button {
+                @include button($primary-color, $primary-dark);
+            }
+        }
+
+        .confirm_ctn {
+            margin-top: 20px;
+            text-align: center;
+
+            h2 {
+                font-size: 1.4rem;
+                font-weight: bold;
+                color: #333;
+            }
+
+            button {
+                @include button($success-color, $success-dark);
+                margin-top: 10px;
+            }
+        }
     }
+}
+
+// 🎨 Style des Menus Déroulants
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    background: white;
+    appearance: none;
+    transition: border-color 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+
+    &:focus {
+        border-color: $primary-color;
+        outline: none;
+    }
+
+    option {
+        background: white;
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+// Ajout d'un pseudo-élément pour la flèche du select
+select::after {
+    content: "▼";
+    font-size: 1rem;
+    color: #555;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+// 🔥 Style des Inputs
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.3s ease-in-out;
+
+    &:focus {
+        border-color: $primary-color;
+        outline: none;
+    }
+}
+
+// 🔧 Focus sur les champs de texte
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+// 🔵 Style des boutons dans la section paiement
+button {
+    @include button($primary-color, $primary-dark);
 }

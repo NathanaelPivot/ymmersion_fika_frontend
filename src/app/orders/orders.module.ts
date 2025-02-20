@@ -9,13 +9,15 @@ import { OrderComponent } from './order/order.component';
 import { DecimalFormatPipe } from '../core/pipes/decimal/decimal.pipe';
 import { StripeService } from '../core/services/stripe/stripe.service'; // Importation du StripeService
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, ProductsComponent, DetailProduitComponent, Page404Component, OrderComponent, DecimalFormatPipe],
   imports: [
     CommonModule,
     OrdersRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [StripeService]
 })
