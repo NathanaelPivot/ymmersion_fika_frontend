@@ -53,22 +53,22 @@ export class OrderComponent implements OnInit, AfterViewInit {
   }
 
   async mountFunction() {
+    console.log('Stripe:', this.stripe);
+    console.log('Card Element:', this.cardElement);
+
     if (this.stripe && this.cardElement) {
       this.elements = this.stripe.elements();
       this.card = this.elements.create('card');
       const cardElement = this.cardElement.nativeElement;
-      this.card.mount(cardElement);
 
-      // Élément IBAN pour SEPA
-      const iban = this.elements.create('iban', {
-        supportedCountries: ['SEPA'],
-      });
-      const ibanElement = document.getElementById('iban-element');
-      if (ibanElement) {
-        iban.mount(ibanElement);
+      if (cardElement) {
+        this.card.mount(cardElement); // Monter la carte bancaire
+        console.log('Carte Stripe montée avec succès.');
       } else {
-        console.error('L\'élément #iban-element n\'a pas été trouvé.');
+        console.error('L\'élément #card-element n\'a pas été trouvé.');
       }
+    } else {
+      console.error('Stripe ou l\'élément de carte Stripe n\'est pas prêt.');
     }
   }
 

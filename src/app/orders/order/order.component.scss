@@ -48,6 +48,8 @@ $border-radius: 8px;
         flex-direction: column;
         border-radius: $border-radius;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
 
         h2 {
             height: 10%;
@@ -113,6 +115,8 @@ $border-radius: 8px;
     // 💳 Section Paiement
     .payer_commande {
         position: absolute;
+        z-index: 9;
+
         height: 100%;
         width: 100%;
         background-color: rgba(0, 0, 0, 0.5);
@@ -121,6 +125,9 @@ $border-radius: 8px;
         justify-content: center;
 
         .payer_ctn {
+            position: relative;
+            z-index: 10;
+            /* Ce conteneur doit être au-dessus du formulaire Stripe */
             background: #ffffff;
             border-radius: 12px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -175,6 +182,9 @@ $border-radius: 8px;
             height: 50px;
             transition: border-color 0.3s ease-in-out;
             font-size: 1rem;
+            position: relative;
+            z-index: 1;
+            /* Ajoute un z-index pour le rendre interactif */
 
             &:focus {
                 border-color: $primary-color;
