@@ -28,7 +28,7 @@
                 @if (item.promotion !== null){
                 <p>{{item.price*item.quantity| number: '1.2-2'}}€</p>
                 } @else {
-                <p>{{(item.price - (item.price * item.promotion /100))*item.quantity| number: '1.2-2'}}€</p>
+                <p>{{(item.price - (item.price * (item.promotion|promotion) /100))*item.quantity| number: '1.2-2'}}€</p>
                 }
             </div>
             }

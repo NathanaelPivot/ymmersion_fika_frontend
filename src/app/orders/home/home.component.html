@@ -31,7 +31,8 @@
                 <button routerLink="/detail/{{produit.id}}">
                     <p>Voir le produit</p>
                     <div class="price"><span>{{produit.price}}€</span>
-                        <p>{{produit.price - (produit.price * produit.promotion /100) | number: '1.2-2'}}€</p>
+                        <p>{{produit.price - (produit.price * (produit.promotion | promotion) /100) | number: '1.2-2'}}€
+                        </p>
 
                     </div>
                     <p class="promo">-{{produit.promotion}}%</p>

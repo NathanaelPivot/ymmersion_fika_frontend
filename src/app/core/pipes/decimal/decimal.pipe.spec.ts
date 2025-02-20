@@ -1,8 +1,8 @@
-import { DecimalPipe } from './decimal.pipe';
+import { DecimalFormatPipe } from './decimal.pipe';
 
 describe('DecimalPipe', () => {
   it('create an instance', () => {
-    const pipe = new DecimalPipe();
+    const pipe = new DecimalFormatPipe();
     expect(pipe).toBeTruthy();
   });
 });

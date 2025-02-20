@@ -8,12 +8,14 @@ import { Page404Component } from './page-404/page-404.component';
 import { OrderComponent } from './order/order.component';
 import { DecimalFormatPipe } from '../core/pipes/decimal/decimal.pipe';
 import { StripeService } from '../core/services/stripe/stripe.service'; // Importation du StripeService
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HomeComponent, ProductsComponent, DetailProduitComponent, Page404Component, OrderComponent, DecimalFormatPipe],
   imports: [
     CommonModule,
     OrdersRoutingModule,
+    SharedModule
   ],
   providers: [StripeService]
 })

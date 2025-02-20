@@ -1,7 +1,7 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';  // ✅ Import de AppRoutingModule
+import { AppRoutingModule } from './app-routing.module';  
 import { SharedModule } from './shared/shared.module';
 import { LucideAngularModule, MoveDown, MoveUp, ShoppingCart, User, X } from 'lucide-angular';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -37,7 +37,7 @@ registerLocaleData(localeFr, 'fr');
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true // Permet de chaîner plusieurs interceptors si besoin
+      multi: true 
     }
 
   ],
