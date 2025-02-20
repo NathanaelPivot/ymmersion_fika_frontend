@@ -1,0 +1,43 @@
+<section class="order_ctn">
+    <section class="payer_commande" *ngIf="confirmModal">
+        <div class="payer_ctn">
+            <div class="payer_retour_ctn">
+                <h2>PAYER</h2>
+                <button (click)="confirmModal=false">⛌</button>
+            </div>
+
+            <div class="stripe">
+                <!-- C'est ici que Stripe va monter l'élément de carte -->
+                <div id="card-element"></div>
+                <!-- Affichage des erreurs Stripe, si elles se produisent -->
+                <div id="card-errors" role="alert"></div>
+            </div>
+
+            <div class="payer_btn_ctn">
+                <button (click)="handlePayment()">Payer</button>
+            </div>
+        </div>
+    </section>
+    <div class="recap_ctn">
+        <h2>Detail commande</h2>
+        <div class="produits_ctn">
+            @for (item of order; track $index) {
+            <div class="cart">
+                <img [src]="'http://localhost:3000/uploads/'+item.imagePath" alt="">
+                <p>{{ item.name }} (x{{item.quantity}})</p>
+                @if (item.promotion !== null){
+                <p>{{item.price*item.quantity| number: '1.2-2'}}€</p>
+                } @else {
+                <p>{{(item.price - (item.price * item.promotion /100))*item.quantity| number: '1.2-2'}}€</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="confirm_ctn">
+            <h2>Total : {{ total | decimalFormat }} €</h2>
+
+            <button (click)="toggleModal()">Procéder au paiement de la commande</button>
+
+        </div>
+    </div>
+</section>
