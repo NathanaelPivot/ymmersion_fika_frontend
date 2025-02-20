@@ -1,0 +1,147 @@
+<div class="popup-container">
+  <div class="popup-content">
+    <h2>Créer un produit</h2>
+    <form #createForm="ngForm">
+
+      <!-- Nom -->
+      <div class="form-group">
+        <label for="name">Nom :</label>
+        <input
+          type="text"
+          id="name"
+          [(ngModel)]="newProduct.name"
+          name="name"
+          required
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description :</label>
+        <textarea
+          id="description"
+          [(ngModel)]="newProduct.description"
+          name="description"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Prix -->
+      <div class="form-group">
+        <label for="price">Prix :</label>
+        <input
+          type="number"
+          id="price"
+          [(ngModel)]="newProduct.price"
+          name="price"
+          required
+        />
+      </div>
+
+      <!-- Promotion -->
+      <div class="form-group">
+        <label for="promotion">Promotion :</label>
+        <input
+          type="number"
+          id="promotion"
+          [(ngModel)]="newProduct.promotion"
+          name="promotion"
+        />
+      </div>
+
+      <!-- Type -->
+      <div class="form-group">
+        <label for="type">Type :</label>
+        <select
+          id="type"
+          [(ngModel)]="newProduct.type"
+          name="type"
+          required
+        >
+          <option *ngFor="let type of typeOptions" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Catégorie -->
+      <div class="form-group">
+        <label for="category">Catégorie :</label>
+        <select
+          id="category"
+          [(ngModel)]="newProduct.category"
+          name="category"
+          required
+        >
+          <option *ngFor="let category of categoryOptions" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Disponible -->
+      <div class="form-group">
+        <label for="available">Disponible :</label>
+        <input
+          type="checkbox"
+          id="available"
+          [(ngModel)]="newProduct.available"
+          name="available"
+        />
+      </div>
+
+      <!-- Image -->
+      <div class="form-group">
+        <label for="image">Ajouter une image :</label>
+        <input
+          type="file"
+          id="image"
+          (change)="onFileChange($event)"
+          accept="image/*"
+        />
+      </div>
+
+      <!-- Prévisualisation de l'image -->
+      <div class="form-group" *ngIf="imagePreview">
+        <p>Prévisualisation de l'image :</p>
+        <img [src]="imagePreview" alt="Prévisualisation" style="max-width: 100%; max-height: 200px;" />
+      </div>
+
+      <!-- Ingrédients -->
+      <div class="form-group">
+        <label for="ingredients">Ingrédients disponibles :</label>
+
+        <!-- Liste déroulante pour sélectionner un ingrédient -->
+        <select
+          id="ingredients"
+          [(ngModel)]="selectedIngredient"
+          name="selectedIngredient"
+        >
+          <option *ngFor="let ingredient of ingredients" [value]="ingredient">
+            {{ ingredient }}
+          </option>
+        </select>
+        <button type="button" (click)="addSelectedIngredient()">Ajouter</button>
+      </div>
+
+      <!-- Liste des ingrédients ajoutés -->
+      <div class="form-group">
+        <label>Ingrédients ajoutés :</label>
+        <ul>
+          <li *ngFor="let ingredient of newProduct.ingredients; let i = index">
+            {{ ingredient }}
+            <button type="button" (click)="removeIngredient(i)">Supprimer</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Boutons -->
+      <div class="actions">
+        <button [disabled]="!createForm.valid" (click)="createProduct()">
+          Créer
+        </button>
+        <button type="button" (click)="closePopup()">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>

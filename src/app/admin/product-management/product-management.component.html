@@ -1,4 +1,12 @@
 <section class="product-management-ctn">
-  <p>product-management works!</p>
+  <div class="header">
+    <h1>Gestion des produits</h1>
+    <button (click)="createProductPopUP()">Ajouter un produit</button>
+  </div>
   <app-data-grid/>
+  <app-popup-create
+    *ngIf="showCreatePopup"
+    (closed)="cancelPopUP()"
+    (create)="onCreateProduct($event)">
+  </app-popup-create>
 </section>

@@ -94,9 +94,15 @@
   </table>
   <app-popup-delete
     [selectedProductId]="selectedProductId"
-    [showPopup]="showPopup"
+    [showPopup]="showDeletePopup"
     (confirm)="confirmDeletion($event)"
-    (cancel)="cancelDeletion()"
+    (cancel)="cancelPopUP()"
   ></app-popup-delete>
-
+  <app-popup-update
+    [selectedProductId]="selectedProductId"
+    [showPopup]="showUpdatePopup"
+    [productData]="selectedProduct"
+    (confirm)="onUpdateProduct($event)"
+    (cancel)="cancelPopUP()"
+  ></app-popup-update>
 </section>
