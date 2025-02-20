@@ -5,7 +5,6 @@ import { OrderInProgressComponent } from './order-in-progress/order-in-progress.
 import { ProductManagementComponent } from './product-management/product-management.component';
 import { HistoryComponent } from './history/history.component';
 import { CreateProductComponent } from './create-product/create-product.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
 
 const routes: Routes = [
     { path: 'in-progress', component: OrderInProgressComponent },
@@ -13,8 +12,6 @@ const routes: Routes = [
     { path: 'product-management', component: ProductManagementComponent },
     { path: 'ingredient-management', component: IngredientManagementComponent },
     { path: 'create-product', component: CreateProductComponent },
-    { path: 'update-product', component: UpdateProductComponent },
-
 ];
 
 @NgModule({

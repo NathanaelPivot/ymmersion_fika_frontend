@@ -7,7 +7,7 @@ export interface Product {
   imagePath: string,
   price: number,
   isPlatDuJour: boolean,
-  promotion: number,
+  promotion: number | null,
   createdAt: string,
   updatedAt: string,
   type: number,

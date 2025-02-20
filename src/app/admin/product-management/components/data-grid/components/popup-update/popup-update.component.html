@@ -1,1 +1,78 @@
-<p>popup-update works!</p>
+<div class="popup-container" *ngIf="showPopup">
+  <div class="popup-content">
+    <h2>Modifier l'article</h2>
+
+    <form *ngIf="updatedProduct">
+      <!-- Preview de l'image -->
+      <div class="form-group">
+        <label>Image :</label>
+        <div class="image-preview">
+          <img [src]="url + updatedProduct.imagePath" alt="Aperçu de l'image" />
+        </div>
+        <input type="file" accept="image/*" (change)="onImageChange($event)" />
+      </div>
+
+      <!-- Nom -->
+      <div class="form-group">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" [(ngModel)]="updatedProduct.name" name="name" />
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description :</label>
+        <textarea id="description" [(ngModel)]="updatedProduct.description" name="description"></textarea>
+      </div>
+
+      <!-- Prix -->
+      <div>
+        <label for="price">Prix :</label>
+        <input type="number" id="price" [(ngModel)]="updatedProduct.price" name="price" />
+      </div>
+
+      <!-- Promotion -->
+      <div>
+        <label for="promotion">Promotion :</label>
+        <input
+          type="number"
+          id="promotion"
+          [value]="(updatedProduct?.promotion | promotion) || 0"
+          name="promotion"
+        />
+      </div>
+
+      <!-- Type -->
+      <div class="form-group">
+        <label for="type">Type :</label>
+        <select id="type" [(ngModel)]="updatedProduct.type" name="type">
+          <option *ngFor="let type of typeOptions" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Catégorie -->
+      <div class="form-group">
+        <label for="category">Catégorie :</label>
+        <select id="category" [(ngModel)]="updatedProduct.category" name="category">
+          <option *ngFor="let category of categoryOptions" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+
+
+      <!-- Disponible -->
+      <div>
+        <label for="available">Disponible :</label>
+        <input type="checkbox" id="available" [(ngModel)]="updatedProduct.available" name="available" />
+      </div>
+    </form>
+
+    <!-- Boutons d'action -->
+    <div class="actions">
+      <button (click)="onConfirm()">Enregistrer</button>
+      <button (click)="onCancel()">Annuler</button>
+    </div>
+  </div>
+</div>

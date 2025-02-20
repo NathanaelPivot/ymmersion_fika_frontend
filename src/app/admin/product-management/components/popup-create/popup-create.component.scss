@@ -1,0 +1,115 @@
+// Style général pour couvrir toute la page lors de l'affichage du popup
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); // Couche semi-transparente pour masquer l'arrière-plan
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Assurez-vous que le popup est au-dessus des autres éléments
+}
+
+// Contenu principal du popup
+.popup-content {
+  background-color: #ffffff; // Fond blanc
+  width: 90%; // Largeur par défaut (responsive)
+  max-width: 600px; // Largeur maximum pour les grands écrans
+  max-height: 800px;
+  overflow: auto;
+  padding: 20px;
+  border-radius: 10px; // Coins arrondis pour un design élégant
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); // Ombre légère pour un effet flottant
+  animation: fadeIn 0.3s ease-out; // Animation à l'ouverture
+}
+
+// Effet d'apparition du popup
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Titre du popup
+.popup-content h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+// Styles généraux pour les étiquettes (labels) et champs du formulaire
+.form-group {
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #007bff; // Couleur de l'accentuation (focus)
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+}
+
+// Boutons d'action (Créer/Annuler)
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:first-child {
+      background-color: #007bff; // Bleu pour le bouton "Créer"
+      color: #fff;
+
+      &:hover {
+        background-color: #0056b3; // Bleu plus sombre au survol
+      }
+    }
+
+    &:last-child {
+      background-color: #ddd; // Gris pour le bouton "Annuler"
+      color: #333;
+
+      &:hover {
+        background-color: #bbb; // Gris plus foncé au survol
+      }
+    }
+  }
+}

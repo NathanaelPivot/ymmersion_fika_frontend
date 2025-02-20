@@ -14,6 +14,9 @@ export class DataGridComponent implements OnInit {
   currentSortProperty: string = ''; // Garde la trace de la colonne triée
   selectedProductId: number | null = null; // ID du produit sélectionné pour suppression
   showPopup: boolean = false; // Contrôle la visibilité du popup
+  selectedProduct: Product | null = null;
+  showDeletePopup: boolean = false; // Contrôle la visibilité du pop-up de suppression
+  showUpdatePopup: boolean = false; // Contrôle la visibilité du pop-up de mise à jour
 
   public readonly url: string = environment.apiUrl + '/uploads/';
 
@@ -51,15 +54,36 @@ export class DataGridComponent implements OnInit {
     });
   }
 
-
   editProduct(product: Product) {
-    console.log('Modifier le produit :', product);
-    // Implémentez ici la logique de modification
+    this.selectedProductId = product.id; // Stocke l'ID du produit sélectionné
+    this.selectedProduct = product; // Stocke les détails du produit à modifier
+    this.showUpdatePopup = true; // Affiche le pop-up de mise à jour
+  }
+
+  onUpdateProduct(updatedProduct: Product) {
+    if (!updatedProduct || !updatedProduct.id) return;
+
+    console.log(updatedProduct);
+
+    this.productService.updateProduit(updatedProduct).subscribe({
+      next: (response) => {
+        console.log("Produit mis à jour :", response);
+        // Met à jour la liste locale
+        const index = this.products.findIndex(p => p.id === updatedProduct.id);
+        if (index !== -1) {
+          this.products[index] = updatedProduct;
+        }
+        this.showPopup = false; // Ferme le pop-up
+      },
+      error: (err) => {
+        console.error("Erreur lors de la mise à jour :", err);
+      }
+    });
   }
 
   deleteProductPopUP(productId: number) {
     this.selectedProductId = productId;
-    this.showPopup = true;
+    this.showDeletePopup = true; // Affiche le pop-up de suppression
   }
 
   confirmDeletion(id: number): void {
@@ -78,9 +102,10 @@ export class DataGridComponent implements OnInit {
     });
   }
 
-  cancelDeletion(): void {
-    console.log('Annulation de la suppression.');
-    this.showPopup = false;
+  cancelPopUP(): void {
+    this.showDeletePopup = false; // Ferme le pop-up de suppression
+    this.showUpdatePopup = false; // Ferme le pop-up de mise à jour
     this.selectedProductId = null;
+    this.selectedProduct = null;
   }
 }

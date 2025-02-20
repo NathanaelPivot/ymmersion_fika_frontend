@@ -13,6 +13,11 @@ export class ProductService {
 
   constructor(private readonly http: HttpClient) { }
 
+  createProduit(product: Product): Observable<Product[]> {
+    console.log(product);
+    return this.http.post<Product[]>(`${this.url}/produits`, product);
+  }
+
   // Récup tout les produits
   getProduits(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/produits`);
@@ -31,6 +36,10 @@ export class ProductService {
   // Récup les promos 👍
   getPromo(): Observable<Product[]> {
     return this.http.get<any>(`${this.url}/produits/promo`);
+  }
+
+  updateProduit(product: Product) {
+    return this.http.patch(`${this.url}/produits/${product.id}`, product);
   }
 
   // Supprimer un produit
