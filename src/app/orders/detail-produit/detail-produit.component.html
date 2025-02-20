@@ -1,4 +1,4 @@
-<section class="detail_produit_ctn">
+<section class="detail_produit_ctn" *ngIf="produit">
     <div class="detail_produit">
 
 
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="order_ctn">
-                <button [disabled]="errMessage !== null" routerLink="/">Ajouter à la commande</button>
+                <button [disabled]="errMessage !== null" (click)="addProduit(produit)">Ajouter à la commande</button>
             </div>
         </div>
     </div>

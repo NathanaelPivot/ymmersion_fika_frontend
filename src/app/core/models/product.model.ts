@@ -13,5 +13,6 @@ export interface Product {
   idType: number,
   idCategory: number,
   available: boolean,
-  ingredients: Ingredient[]
+  quantity: number,
+  ingredients: Ingredient[],
 }

@@ -4,6 +4,7 @@ import { Product } from '../../core/models/product.model';
 import { ProductService } from '../../core/services/product/product.service';
 import { Router } from '@angular/router';
 import { Ingredient } from '../../core/models/ingredient.model';
+import { CartService } from '../../core/services/cart/cart.service';
 
 @Component({
   selector: 'app-detail-produit',
@@ -11,6 +12,7 @@ import { Ingredient } from '../../core/models/ingredient.model';
   styleUrl: './detail-produit.component.scss'
 })
 export class DetailProduitComponent {
+
   paramValue: string | null = null;
 
   errMessage: string | null = null;
@@ -24,12 +26,12 @@ export class DetailProduitComponent {
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
     this.paramValue = this.route.snapshot.paramMap.get('id');
-    console.log(this.paramValue)
     if (this.paramValue !== null) {
       this.getProduit(parseInt(this.paramValue, 10))
     } else {
@@ -56,5 +58,9 @@ export class DetailProduitComponent {
     this.withoutList = this.withoutList.filter(item => item !== ingredient);
     this.ingredientList.push(ingredient)
     this.errMessage = null;
+  }
+
+  addProduit(product: Product) {
+    this.cartService.addToCart(product); // ✅ Utilisation du service
   }
 }

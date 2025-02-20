@@ -6,6 +6,25 @@
     </button>
   </div>
   <div class="side_cart_ctn">
-    <p>side cart works!</p>
+    @if(cart.length === 0){
+    <h3>Le panier est vide</h3>
+    } @else {
+    <div class="cart_ctn">
+      <h3>Récapitulatif de la commande</h3>
+      @for (item of cart; track $index) {
+      <div class="cart">
+        <p>{{ item.name }} (x{{ item.quantity || 1 }})</p>
+        @if(item.quantity > 1){
+        <button (click)="decreaseQuantity(item)" class="decrease">Enlever 1</button>
+        }
+        <button (click)="removeItem($index)" class="remove">Supprimer</button>
+      </div>
+      }
+    </div>
+
+    <div class="order_btn_ctn">
+      <button>Commander</button>
+    </div>
+    }
   </div>
 </section>
