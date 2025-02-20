@@ -5,6 +5,7 @@
   align-items: center;
   margin-top: 2rem;
   overflow-x: auto;
+  position: relative;
 
   table {
     width: 100%;
@@ -44,6 +45,16 @@
           background-color: rgba(0, 123, 255, 0.1);
           cursor: pointer;
         }
+
+        .image {
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 10px;
+          }
+        }
       }
 
       td {
@@ -69,6 +80,10 @@
         }
       }
     }
+  }
+
+  app-popup-delete {
+    position: absolute;
   }
 }
 

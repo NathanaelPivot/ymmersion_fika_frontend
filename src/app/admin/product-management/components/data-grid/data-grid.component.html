@@ -41,8 +41,24 @@
           </ng-container>
         </div>
       </th>
-      <th>type</th>
-      <th>category</th>
+      <th (click)="sortTable('type')">
+        <div class="sortable-header">
+          type
+          <ng-container *ngIf="currentSortProperty === 'available'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
+      <th (click)="sortTable('type')">
+        <div class="sortable-header">
+          category
+          <ng-container *ngIf="currentSortProperty === 'available'">
+            <lucide-icon *ngIf="isAscending" name="move-up"></lucide-icon>
+            <lucide-icon *ngIf="!isAscending" name="move-down"></lucide-icon>
+          </ng-container>
+        </div>
+      </th>
       <th (click)="sortTable('available')">
         <div class="sortable-header">
           status
@@ -58,22 +74,29 @@
     <tbody>
     <tr *ngFor="let product of products">
       <td>{{ product.id }}</td>
-      <td>
-        <img [src]="product.imagePath" alt="Product Image"/>
+      <td class="image">
+        <img [src]="url + product.imagePath" alt="Product Image"/>
       </td>
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
       <td>{{ product.isPlatDuJour ? 'Oui' : 'Non' }}</td>
       <td>{{ product.promotion | promotion }} %</td>
-      <td>{{ product.idType }}</td>
-      <td>{{ product.idCategory }}</td>
+      <td>{{ product.type }}</td>
+      <td>{{ product.category }}</td>
       <td>{{ product.available ? 'en ligne' : 'brouillon' }}</td>
       <td class="actions">
         <button (click)="editProduct(product)">Modifier</button>
-        <button (click)="deleteProduct(product.id)">Supprimer</button>
+        <button (click)="deleteProductPopUP(product.id)">Supprimer</button>
       </td>
     </tr>
     </tbody>
   </table>
+  <app-popup-delete
+    [selectedProductId]="selectedProductId"
+    [showPopup]="showPopup"
+    (confirm)="confirmDeletion($event)"
+    (cancel)="cancelDeletion()"
+  ></app-popup-delete>
+
 </section>

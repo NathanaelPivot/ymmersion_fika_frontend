@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../core/services/product/product.service';
-import { Product } from '../../../../core/models/product.model'; // Import du modèle
+import { Product } from '../../../../core/models/product.model';
+import {environment} from '../../../../../environments/environment'; // Import du modèle
 
 @Component({
   selector: 'app-data-grid',
@@ -8,9 +9,13 @@ import { Product } from '../../../../core/models/product.model'; // Import du mo
   styleUrls: ['./data-grid.component.scss']
 })
 export class DataGridComponent implements OnInit {
-  products: Product[] = []; // Utilisation du modèle Product
+  products: Product[] = []; // Produits récupérés
   isAscending: boolean = true; // Définit l'ordre de tri par défaut
   currentSortProperty: string = ''; // Garde la trace de la colonne triée
+  selectedProductId: number | null = null; // ID du produit sélectionné pour suppression
+  showPopup: boolean = false; // Contrôle la visibilité du popup
+
+  public readonly url: string = environment.apiUrl + '/uploads/';
 
   constructor(private productService: ProductService) {}
 
@@ -52,8 +57,30 @@ export class DataGridComponent implements OnInit {
     // Implémentez ici la logique de modification
   }
 
-  deleteProduct(productId: number) {
-    console.log('Supprimer le produit ID :', productId);
-    // Implémentez votre logique de suppression avec ProductService
+  deleteProductPopUP(productId: number) {
+    this.selectedProductId = productId;
+    this.showPopup = true;
+  }
+
+  confirmDeletion(id: number): void {
+    if (!id) return; // Vérification de l'ID avant suppression
+    this.productService.deleteProduit(id).subscribe({
+      next: () => {
+        console.log(`Produit avec ID ${id} supprimé avec succès.`);
+        this.products = this.products.filter(product => product.id !== id); // Supprime localement
+        this.showPopup = false;
+        this.selectedProductId = null;
+      },
+      error: (err) => {
+        console.error('Erreur lors de la suppression du produit :', err);
+        this.showPopup = false;
+      }
+    });
+  }
+
+  cancelDeletion(): void {
+    console.log('Annulation de la suppression.');
+    this.showPopup = false;
+    this.selectedProductId = null;
   }
 }

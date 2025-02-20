@@ -5,12 +5,13 @@ import {AppRoutingModule} from './app-routing.module';  // ✅ Import de AppRout
 import {SharedModule} from './shared/shared.module';
 import {IngredientManagementComponent} from './admin/ingredient-management/ingredient-management.component';
 import {LucideAngularModule, MoveDown, MoveUp, ShoppingCart, User, X} from 'lucide-angular';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {AdminModule} from './admin/admin.module';
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { PromotionPipe } from './core/pipes/promotion/promotion.pipe';
+import {AuthInterceptor} from './core/interceptors/auth.interceptor';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -34,7 +35,13 @@ registerLocaleData(localeFr, 'fr');
   ],
   providers: [
     CookieService,
-    {provide: LOCALE_ID, useValue: 'fr'}
+    {provide: LOCALE_ID, useValue: 'fr'},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true // Permet de chaîner plusieurs interceptors si besoin
+    }
+
   ],
   bootstrap: [AppComponent]
 })
