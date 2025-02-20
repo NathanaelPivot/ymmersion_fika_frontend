@@ -99,13 +99,8 @@ export class AuthService {
     )
   }
 
-  async getToken(): Promise<string | null> {
-    const cookieValue = this.cookieService.get('token')
-    console.log(cookieValue);
-    if (!cookieValue) {
-      return null;
-    }
-    return cookieValue;
+  getToken(): string | null {
+    return this.cookieService.get('token') || null;
   }
 
   logout(): void {

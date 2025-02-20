@@ -25,7 +25,7 @@ export class ProductService {
 
   // Récup Plats du Jour
   getPlatDuJour(): Observable<Product[]> {
-    return this.http.get<any>(`${this.url}/produits/platDuJour`);
+    return this.http.get<Product[]>(`${this.url}/produits/platDuJour`);
   }
 
   // Récup les promos 👍
@@ -34,7 +34,7 @@ export class ProductService {
   }
 
   // Supprimer un produit
-  deleteProduit(productId: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${productId}`);
+  deleteProduit(productId: number): Observable<Product[]> {
+    return this.http.delete<Product[]>(`${this.url}/produits/${productId}`);
   }
 }

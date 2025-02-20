@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DataGridComponent } from './product-management/components/data-grid/data-grid.component';
 import {LucideAngularModule} from 'lucide-angular';
 import {SharedModule} from '../shared/shared.module';
+import { PopupDeleteComponent } from './product-management/components/data-grid/components/popup-delete/popup-delete.component';
+import { PopupUpdateComponent } from './product-management/components/data-grid/components/popup-update/popup-update.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {SharedModule} from '../shared/shared.module';
     UpdateProductComponent,
     NavbarComponent,
     DataGridComponent,
+    PopupDeleteComponent,
+    PopupUpdateComponent,
   ],
   exports: [
     NavbarComponent
