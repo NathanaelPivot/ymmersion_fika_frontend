@@ -2,6 +2,7 @@ import { Ingredient } from "./ingredient.model";
 
 export interface Product {
   id: number,
+  uidUser: string,
   name: string,
   description: string,
   imagePath: string,

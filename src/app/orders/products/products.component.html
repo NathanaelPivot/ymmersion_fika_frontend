@@ -1,1 +1,39 @@
-<p>products works!</p>
+<section class="products_ctn">
+    <div class="cat_ctn" *ngIf="productsType">
+        <h2>{{ categorie }}</h2>
+        <div class="products_list">
+            @if(productsType.length > 0){
+            <div class="produit" *ngFor="let produit of productsType">
+                <div class="image_ctn">
+                    <div class="loader" *ngIf="!imageLoaded"></div>
+                    <img [src]="'http://localhost:3000/uploads/'+produit.imagePath" (load)="imageLoaded = true"
+                        [style.display]="imageLoaded ? 'flex' : 'none'" />
+                </div>
+                <p>{{produit.name}}</p>
+                <button routerLink="/detail/{{produit.id}}">
+                    <p>Voir le produit</p>
+                    <div class="price">
+
+                        @if(produit.promotion){
+                        <span>{{produit.price}}€</span>
+                        <p>{{produit.price - (produit.price * (produit.promotion | promotion) /100) | number: '1.2-2'}}€
+                        </p>
+                        } @else {
+                        <p>{{produit.price}}€</p>
+                        }
+                    </div>
+                    @if(produit.promotion){
+                    <p class="promo">-{{produit.promotion}}%</p>
+                    }
+
+                </button>
+
+            </div>
+            } @else {
+            <h1>Aucun {{categorie}} disponible</h1>
+            }
+
+        </div>
+
+    </div>
+</section>

@@ -28,6 +28,10 @@ export class ProductService {
     return this.http.get<any>(`${this.url}/produits/${id}`);
   }
 
+  getProduitByCategorie(cat: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.url}/produits/${cat}`);
+  }
+
   // Récup Plats du Jour
   getPlatDuJour(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/produits/platDuJour`);

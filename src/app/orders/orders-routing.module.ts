@@ -8,10 +8,8 @@ import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'plats', component: ProductsComponent },
-  { path: 'boissons', component: ProductsComponent },
-  { path: 'dessert', component: ProductsComponent },
-  { path: 'snacks', component: ProductsComponent },
+  { path: 'produits/:type', component: ProductsComponent },
+
   { path: 'detail/:id', component: DetailProduitComponent },
   { path: '404', component: Page404Component },
   { path: 'order', component: OrderComponent },
