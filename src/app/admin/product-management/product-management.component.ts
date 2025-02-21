@@ -23,8 +23,17 @@ export class ProductManagementComponent {
   }
 
   // Ajoutez un paramètre ici pour recevoir le produit
-  onCreateProduct(newProduct: any): void {
-    this.productService.createProduit(newProduct)
-    this.showCreatePopup = false;
+  onCreateProduct(formData: FormData): void {
+    console.log('FormData reçu depuis le composant enfant :');
+
+    // Vérifiez les champs du FormData
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+
+    // Si rien n'apparaît, logguez aussi formData brut
+    console.log('FormData brut :', formData);
+
+    // Astuce : si besoin, remplacez formData.forEach par un polyfill pour un affichage dans certains navigateurs
   }
 }

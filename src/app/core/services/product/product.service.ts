@@ -42,6 +42,7 @@ export class ProductService {
   }
 
   updateProduit(product: Product) {
+    console.log(product);
     return this.http.patch(`${this.url}/produits/${product.id}`, product);
   }
 

@@ -15,5 +15,5 @@ export interface Product {
   category: number,
   available: boolean,
   quantity: number,
-  ingredients: Ingredient[],
+  ingredientsProduits: Ingredient[],
 }

@@ -18,4 +18,8 @@ export class IngredientService {
     return this.http.get(`${this.url}/ingredient`);
   }
 
+  find(id: number): Observable<any> {
+    return this.http.get(`${this.url}/ingredient/${id}`);
+  }
+
 }

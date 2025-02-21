@@ -22,6 +22,9 @@
     <a routerLink="/auth/login">
       <lucide-icon name="user" class="my-icon"></lucide-icon>
     </a>
+    <a *ngIf="isAdmin" routerLink="/admin/product-management">
+      <lucide-icon name="chart-column-stacked" class="my-icon"></lucide-icon>
+    </a>
     <button class="header_cart" (click)="openSideCart()">
       <span>
         <lucide-icon name="shopping-cart" class="my-icon"></lucide-icon>

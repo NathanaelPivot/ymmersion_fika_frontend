@@ -42,7 +42,7 @@ export class DetailProduitComponent {
   getProduit(id: number) {
     this.productService.getProduit(id).subscribe(response => {
       this.produit = response;
-      this.ingredientList = this.produit.ingredients;
+      this.ingredientList = this.produit.ingredientsProduits;
     })
   }
 
