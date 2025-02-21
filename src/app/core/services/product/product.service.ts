@@ -14,7 +14,6 @@ export class ProductService {
   constructor(private readonly http: HttpClient) { }
 
   createProduit(product: Product): Observable<Product[]> {
-    console.log(product);
     return this.http.post<Product[]>(`${this.url}/produits`, product);
   }
 

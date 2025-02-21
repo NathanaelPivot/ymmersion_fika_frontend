@@ -5,10 +5,12 @@ import { ProductsComponent } from './products/products.component';
 import { DetailProduitComponent } from './detail-produit/detail-produit.component';
 import { Page404Component } from './page-404/page-404.component';
 import { OrderComponent } from './order/order.component';
+import { SucceedPayementComponent } from './succeed-payement/succeed-payement.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'produits/:type', component: ProductsComponent },
+  { path: 'succeed/:verify', component: SucceedPayementComponent },
 
   { path: 'detail/:id', component: DetailProduitComponent },
   { path: '404', component: Page404Component },

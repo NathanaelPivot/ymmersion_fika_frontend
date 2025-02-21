@@ -2,6 +2,10 @@ import { AfterViewInit, Component, OnInit, ViewChild, ElementRef, ChangeDetector
 import { Product } from '../../core/models/product.model';
 import { Stripe, StripeCardElement, StripeElements } from '@stripe/stripe-js';
 import { StripeService } from '../../core/services/stripe/stripe.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Order } from '../../core/models/order.model';
+import { OrderServiceService } from '../../core/services/order/order-service.service';
 
 @Component({
   selector: 'app-order',
@@ -13,6 +17,12 @@ export class OrderComponent implements OnInit, AfterViewInit {
   confirmModal: boolean = false;
   total: number = 0;
 
+
+  finalOrder: {
+    totalPrice: number,
+    orderItems: Product[]
+  } = { totalPrice: 0, orderItems: [] }
+
   stripe: Stripe | null = null;
   elements: StripeElements | null = null;
   card: StripeCardElement | null = null;
@@ -23,9 +33,15 @@ export class OrderComponent implements OnInit, AfterViewInit {
   billingCountry: string = 'FR';
   postalCode: string = '';
 
+  succedPayement: boolean = false;
+
   @ViewChild('cardElement', { static: false }) cardElement: ElementRef | undefined;
 
-  constructor(private stripeService: StripeService, private cdr: ChangeDetectorRef) { }
+  constructor(private stripeService: StripeService,
+    private cdr: ChangeDetectorRef,
+    private http: HttpClient,
+    private router: Router,
+    private orderService: OrderServiceService) { }
 
   async ngOnInit() {
     this.getOrder();
@@ -82,15 +98,68 @@ export class OrderComponent implements OnInit, AfterViewInit {
     const { paymentMethod, error } = await this.stripe.createPaymentMethod({
       type: 'card',
       card: this.card,
+      billing_details: {
+        name: this.cardholderName,
+        email: this.email,
+        address: {
+          country: this.billingCountry,
+          postal_code: this.postalCode
+        }
+      }
     });
 
     if (error) {
-      console.error(error);
-    } else {
-      console.log('PaymentMethod:', paymentMethod);
-      // Envoyer paymentMethod.id à votre backend pour créer un PaymentIntent
+      console.error('Erreur de paiement Stripe:', error);
+      return;
+    }
+
+    console.log('PaymentMethod créé:', paymentMethod);
+
+    // Envoyer au backend pour créer un PaymentIntent
+    this.http.post('http://localhost:3000/subscriptions/pay', {
+      paymentMethodId: paymentMethod.id,
+      amount: this.total * 100,
+      currency: 'eur',
+      email: this.email
+    }).subscribe({
+      next: (response: any) => {
+        console.log('Réponse du serveur:', response);
+        if (response.requiresAction) {
+          this.handle3DSecure(response.clientSecret);
+        } else {
+          console.log('Paiement réussi 🎉');
+          this.succedPayement = true;
+
+          this.finalOrder.totalPrice = this.total;
+          this.finalOrder.orderItems = this.order;
+
+          this.orderService.createOrder(this.finalOrder)
+
+          this.router.navigateByUrl(`/succeed/${this.succedPayement}`);
+        }
+      },
+      error: (err) => {
+        console.error('Erreur lors du paiement:', err);
+        this.succedPayement = false;
+        this.router.navigateByUrl(`/succeed/${this.succedPayement}`);
+      },
+    });
+
+  }
+
+  async handle3DSecure(clientSecret: string) {
+    if (!this.stripe) return;
+
+    const { error, paymentIntent } = await this.stripe.confirmCardPayment(clientSecret);
+
+    if (error) {
+      console.error('Échec du paiement 3D Secure:', error);
+
+    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+      console.log('Paiement validé avec 3D Secure 🎉');
     }
   }
+
 
   private isLocalStorageAvailable(): boolean {
     return typeof localStorage !== 'undefined';
