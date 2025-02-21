@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { LucideAngularModule, MoveDown, MoveUp, ShoppingCart, User, X } from 'lucide-angular';
+import {ChartColumnStacked, LucideAngularModule, MoveDown, MoveUp, ShoppingCart, User, X} from 'lucide-angular';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AdminModule } from './admin/admin.module';
@@ -28,6 +28,7 @@ registerLocaleData(localeFr, 'fr');
       X,
       MoveDown,
       MoveUp,
+      ChartColumnStacked
     }),
     AdminModule,
   ],

@@ -21,7 +21,7 @@ export class PopupCreateComponent implements OnInit {
     category: '',
     available: false,
     ingredientsProduits: [] as { idIngredient: number; quantity: number; name: string }[], // Liste d'objets { idIngredient, quantity, name }
-    imagePath: file
+    imagePath: ''
   };
 
   // Liste des options (types et catégories)
