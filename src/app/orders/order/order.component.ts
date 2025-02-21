@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { Product } from '../../core/models/product.model';
 import { Stripe, StripeCardElement, StripeElements } from '@stripe/stripe-js';
 import { StripeService } from '../../core/services/stripe/stripe.service';
@@ -25,7 +25,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
   @ViewChild('cardElement', { static: false }) cardElement: ElementRef | undefined;
 
-  constructor(private stripeService: StripeService) { }
+  constructor(private stripeService: StripeService, private cdr: ChangeDetectorRef) { }
 
   async ngOnInit() {
     this.getOrder();
@@ -33,9 +33,13 @@ export class OrderComponent implements OnInit, AfterViewInit {
     this.stripe = await this.stripeService.getStripe();
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    if (!this.stripe) {
+      this.stripe = await this.stripeService.getStripe();
+    }
     this.mountFunction();
   }
+
 
   getOrder() {
     if (this.isLocalStorageAvailable()) {
@@ -53,22 +57,22 @@ export class OrderComponent implements OnInit, AfterViewInit {
   }
 
   async mountFunction() {
-    console.log('Stripe:', this.stripe);
-    console.log('Card Element:', this.cardElement);
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Attendre que la modal soit bien affichée
 
-    if (this.stripe && this.cardElement) {
-      this.elements = this.stripe.elements();
-      this.card = this.elements.create('card');
-      const cardElement = this.cardElement.nativeElement;
-
-      if (cardElement) {
-        this.card.mount(cardElement); // Monter la carte bancaire
-        console.log('Carte Stripe montée avec succès.');
-      } else {
-        console.error('L\'élément #card-element n\'a pas été trouvé.');
-      }
-    } else {
+    if (!this.stripe || !this.cardElement) {
       console.error('Stripe ou l\'élément de carte Stripe n\'est pas prêt.');
+      return;
+    }
+
+    this.elements = this.stripe.elements();
+    this.card = this.elements.create('card');
+
+    if (this.cardElement.nativeElement) {
+      this.card.mount(this.cardElement.nativeElement);
+      this.cdr.detectChanges(); // Forcer Angular à détecter les changements
+      console.log('Carte Stripe montée avec succès.');
+    } else {
+      console.error('L\'élément #card-element n\'a pas été trouvé.');
     }
   }
 
@@ -95,7 +99,10 @@ export class OrderComponent implements OnInit, AfterViewInit {
   toggleModal() {
     this.confirmModal = true;
     setTimeout(() => {
-      this.mountFunction(); // Attendre que le DOM soit mis à jour
-    }, 0);
+      if (this.cardElement && this.cardElement.nativeElement) {
+        this.mountFunction();
+      }
+    }, 300); // Augmenter légèrement le délai pour garantir que le DOM est mis à jour
   }
+
 }
