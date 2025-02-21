@@ -13,9 +13,13 @@ export class ProductService {
 
   constructor(private readonly http: HttpClient) { }
 
-  createProduit(product: Product): Observable<Product[]> {
-    console.log(product);
-    return this.http.post<Product[]>(`${this.url}/produits`, product);
+  createProduit(product: any): Observable<any> {
+    return this.http.post(`${this.url}/produits`, product, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+    });
+
   }
 
   // Récup tout les produits
@@ -43,6 +47,7 @@ export class ProductService {
   }
 
   updateProduit(product: Product) {
+    console.log(product);
     return this.http.patch(`${this.url}/produits/${product.id}`, product);
   }
 

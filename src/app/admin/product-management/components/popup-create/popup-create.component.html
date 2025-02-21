@@ -109,37 +109,53 @@
 
       <!-- Ingrédients -->
       <div class="form-group">
-        <label for="ingredients">Ingrédients disponibles :</label>
-
-        <!-- Liste déroulante pour sélectionner un ingrédient -->
+        <label for="ingredients">Sélectionner un ingrédient :</label>
         <select
           id="ingredients"
-          [(ngModel)]="selectedIngredient"
-          name="selectedIngredient"
+          [(ngModel)]="selectedIngredientId"
+          name="selectedIngredientId"
+          required
         >
-          <option *ngFor="let ingredient of ingredients" [value]="ingredient">
-            {{ ingredient }}
+          <option [value]="null" disabled selected>Choisissez un ingrédient</option>
+          <option *ngFor="let ingredient of ingredients" [value]="ingredient.id">
+            {{ ingredient.name }}
           </option>
         </select>
-        <button type="button" (click)="addSelectedIngredient()">Ajouter</button>
       </div>
+
+      <div class="form-group">
+        <label for="quantity">Quantité :</label>
+        <input
+          type="number"
+          id="quantity"
+          [(ngModel)]="selectedIngredientQuantity"
+          name="selectedIngredientQuantity"
+          min="1"
+          required
+        />
+      </div>
+
+      <!-- Bouton pour ajouter l'ingrédient avec sa quantité -->
+      <button type="button" (click)="addSelectedIngredient()">Ajouter</button>
 
       <!-- Liste des ingrédients ajoutés -->
       <div class="form-group">
-        <label>Ingrédients ajoutés :</label>
-        <ul>
-          <li *ngFor="let ingredient of newProduct.ingredients; let i = index">
-            {{ ingredient }}
+        <label>Ingrédients sélectionnés :</label>
+        <ul *ngIf="newProduct.ingredientsProduits.length > 0; else noIngredients">
+          <li *ngFor="let ingredient of newProduct.ingredientsProduits; let i = index">
+            <!-- Affichez directement "name" et "quantity" -->
+            {{ ingredient.name }} x {{ ingredient.quantity }}
             <button type="button" (click)="removeIngredient(i)">Supprimer</button>
           </li>
         </ul>
+        <ng-template #noIngredients>
+          <p>Aucun ingrédient ajouté pour le moment.</p>
+        </ng-template>
       </div>
 
       <!-- Boutons -->
       <div class="actions">
-        <button [disabled]="!createForm.valid" (click)="createProduct()">
-          Créer
-        </button>
+        <button type="button" class="btn btn-primary" (click)="onCreate()">Créer</button>
         <button type="button" (click)="closePopup()">Annuler</button>
       </div>
     </form>
