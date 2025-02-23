@@ -34,7 +34,3 @@ Une fois le serveur démarré, accédez à l'application en vous rendant à cett
 [http://localhost:4200/](http://localhost:4200/)
 
 L'application se rechargera automatiquement lorsque vous modifiez un fichier source.
-
-## Structure du projet
-
-Voici un aperçu simplifié de la structure principale du projet :
