@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../core/models/product.model';
 import { ProductService } from '../../core/services/product/product.service';
@@ -11,7 +11,7 @@ import { CartService } from '../../core/services/cart/cart.service';
   templateUrl: './detail-produit.component.html',
   styleUrl: './detail-produit.component.scss'
 })
-export class DetailProduitComponent {
+export class DetailProduitComponent implements OnInit {
 
   paramValue: string | null = null;
 
@@ -42,7 +42,7 @@ export class DetailProduitComponent {
   getProduit(id: number) {
     this.productService.getProduit(id).subscribe(response => {
       this.produit = response;
-      this.ingredientList = this.produit.ingredientsProduits;
+      this.ingredientList = this.produit.ingredients;
     })
   }
 

@@ -24,7 +24,7 @@ export class ProductService {
 
   // Récup 1 produit avec ID
   getProduit(id: number): Observable<Product> {
-    return this.http.get<any>(`${this.url}/produits/${id}`);
+    return this.http.get<Product>(`${this.url}/produits/${id}`);
   }
 
   getProduitByCategorie(cat: string): Observable<Product[]> {
