@@ -1,0 +1,70 @@
+.succeed_payement_ctn {
+    width: 100vw;
+    height: 90vh;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url(../../../../public/img/bg/bg2.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.succeed_payement {
+    width: 80vw;
+    max-width: 600px;
+    height: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.succeed_payement h1 {
+    font-size: 2rem;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.succeed_payement h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.again {
+    margin-top: 20px;
+}
+
+.again p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.again a {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.again a:hover {
+    text-decoration: underline;
+}
+
+.succeed_payement button {
+    background-color: #c0392b;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.succeed_payement button:hover {
+    background-color: #a93226;
+}

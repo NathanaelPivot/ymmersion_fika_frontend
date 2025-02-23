@@ -13,13 +13,8 @@ export class ProductService {
 
   constructor(private readonly http: HttpClient) { }
 
-  createProduit(product: any): Observable<any> {
-    return this.http.post(`${this.url}/produits`, product, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-    });
-
+  createProduit(product: Product): Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.url}/produits`, product);
   }
 
   // Récup tout les produits

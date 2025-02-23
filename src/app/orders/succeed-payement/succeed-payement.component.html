@@ -1,0 +1,17 @@
+<section class="succeed_payement_ctn">
+    <div class="succeed_payement">
+        @if(paramValue === "true"){
+        <h1> Payement réussi !</h1>
+        <h3>Votre commande porte le numéro {{noCmd}}</h3>
+        <div class="again">
+            <p>Encore une petite faim ? N'hésite pas à checker nos <a routerLink="/produits/Plats">plats</a>
+            </p>
+        </div>
+
+        } @else {
+        <h1>Un problème est survenu avec le payement</h1>
+        <button>Retour a la commande</button>
+        }
+
+    </div>
+</section>
