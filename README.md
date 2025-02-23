@@ -15,7 +15,7 @@ Avant de démarrer le projet, assurez-vous d'avoir installé les outils suivants
 1. Clonez le dépôt de ce projet depuis votre gestionnaire de version :
     ```bash
     git clone <URL_DU_DEPOT>
-    cd YmmersionFikaFrontend
+    cd ymmersion_fika_frontend
     ```
 
 2. Installez les dépendances nécessaires avec npm :
