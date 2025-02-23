@@ -1,27 +1,40 @@
 # YmmersionFikaFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+**YmmersionFikaFrontend** est une application développée avec Angular, à l'aide de l'[Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
 
-## Development server
+## Prérequis
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Avant de démarrer le projet, assurez-vous d'avoir installé les outils suivants :
 
-## Code scaffolding
+- [Node.js](https://nodejs.org/) (version recommandée : 18.x ou plus)
+- [npm](https://www.npmjs.com/) (installé automatiquement avec Node.js)
+- Angular CLI (peut être installé avec la commande : `npm install -g @angular/cli`)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+1. Clonez le dépôt de ce projet depuis votre gestionnaire de version :
+    ```bash
+    git clone <URL_DU_DEPOT>
+    cd YmmersionFikaFrontend
+    ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Installez les dépendances nécessaires avec npm :
+    ```bash
+    npm install
+    ```
 
-## Running unit tests
+## Lancer le serveur de développement
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Pour démarrer un serveur de développement local, exécutez la commande suivante :
+```bash
+ng serve
+```
 
-## Running end-to-end tests
+Une fois le serveur démarré, accédez à l'application en vous rendant à cette URL dans votre navigateur :
+[http://localhost:4200/](http://localhost:4200/)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+L'application se rechargera automatiquement lorsque vous modifiez un fichier source.
 
-## Further help
+## Structure du projet
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Voici un aperçu simplifié de la structure principale du projet :
